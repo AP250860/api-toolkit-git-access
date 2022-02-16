@@ -1,0 +1,20 @@
+version: '3'
+services:
+  lesson2:
+    build: .
+    ports:
+    - "8080:8080"
+    - "8000:8000"
+    - "18081:18081"
+    environment:
+      - "TX_INFINITY_DEVELOPMENT=win"
+      - "METRICS_ENABLED=true"
+      - "BRANCH_TO_CLONE=master"
+      - "API_DEF_GIT_URL=https://github.com/AP250860/api-toolkit-git-access.git"
+      - "TX_APITOOLKIT_GIT_PASSWORD=Your-3333"
+    volumes:
+    - .:/opt/tx-apitoolkit-service/app
+  apitoolkit-ui:
+   image: ncr-csp-docker-snapshots.jfrog.io/tx-apitoolkit-ui:2.3.0-latest
+   ports:
+   - "8090:8090"
